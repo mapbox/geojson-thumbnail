@@ -6,6 +6,7 @@ Generate thumbnails for GeoJSON features
 npm install -g @mapbox/geojson-thumbnail
 npm link
 
+export MapboxAccessToken=<your token>
 geojson-thumbnail <your-geojson-file> thumb.png
 ```
 

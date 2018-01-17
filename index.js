@@ -51,8 +51,8 @@ function bestRenderParams(geojson, backgroundTileJSON) {
 function renderThumbnail(geojson, callback, options) {
 	options = Object.assign({
 		stylesheet: styles.default,
-		//backgroundTileJSON: sources.mapboxSatellite(process.env.MapboxAccessToken),
-		backgroundTileJSON: sources.naturalEarth(),
+		backgroundTileJSON: sources.mapboxSatellite(process.env.MapboxAccessToken),
+		//backgroundTileJSON: sources.naturalEarth(),
 	}, options);
   options.tileSize = options.backgroundTileJSON.tileSize || 256;
 
