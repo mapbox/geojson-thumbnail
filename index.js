@@ -51,17 +51,22 @@ function bestRenderParams(geojson, backgroundTileJSON) {
 function renderThumbnail(geojson, callback, options) {
 	options = Object.assign({
 		stylesheet: styles.default,
-		backgroundTileJSON: sources.mapboxSatellite(process.env.MapboxAccessToken)
+		//backgroundTileJSON: sources.mapboxSatellite(process.env.MapboxAccessToken),
+		backgroundTileJSON: sources.naturalEarth(),
 	}, options);
+  options.tileSize = options.backgroundTileJSON.tileSize || 256;
 
   console.log(options.backgroundTileJSON);
 
   template.templatizeStylesheet(options.stylesheet, (err, template) => {
     const backgroundUri =  { data: options.backgroundTileJSON };
 		new TileJSON(backgroundUri, (err, backgroundSource) => {
-	    const overlaySource = new thumbnail.ThumbnailSource(geojson, template, options.mapOptions);
+	    const overlaySource = new thumbnail.ThumbnailSource(geojson, template, {
+        tileSize: options.tileSize
+      }, options.mapOptions);
       const blendSource = new blend.BlendRasterSource(backgroundSource, overlaySource);
       const renderParams = Object.assign(bestRenderParams(geojson, options.backgroundTileJSON), {
+        tileSize: options.tileSize,
         getTile: blendSource.getTile
       })
       console.log(renderParams);
