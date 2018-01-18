@@ -16,6 +16,11 @@
      "docs": "documentation build --github index.js -f md > API.md",
     "postinstall": "npm dedupe mapnik"
   },
+  "pre-commit": [
+    "pretest",
+    "test",
+    "docs"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mapbox/geojson-thumbnail.git"
