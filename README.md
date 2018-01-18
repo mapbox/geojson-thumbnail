@@ -1,4 +1,4 @@
-# geojson-thumbnail
+# geojson-thumbnail [![Build Status](https://travis-ci.org/mapbox/geojson-thumbnail.svg?branch=master)](https://travis-ci.org/mapbox/geojson-thumbnail)
 
 Generate thumbnails for GeoJSON features
 

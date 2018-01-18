@@ -1,0 +1,15 @@
+language: node_js
+sudo: false
+node_js:
+- '4'
+before_install:
+- npm install coveralls
+addons:
+  apt:
+    sources:
+    - ubuntu-toolchain-r-test
+    packages:
+    - g++-4.8
+    - libstdc++6
+after_script:
+- npm run coverage
