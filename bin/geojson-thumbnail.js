@@ -6,9 +6,6 @@ const fs = require('fs');
 const path = require('path');
 const index = require('../index');
 
-const sources = require('../lib/sources');
-const styles = require('../lib/styles');
-
 program
   .usage('<input file> <output file>')
   .description('Render a GeoJSON thumbnail')

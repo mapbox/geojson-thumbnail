@@ -22,7 +22,6 @@ function bestRenderParams(geojson, backgroundTileJSON) {
   function paddedExtent(geojson) {
     const extent = bbox(geojson);
     const minPad = Math.abs(sm.ll([0, 0], optimalZoom)[0] - sm.ll([150, 150], optimalZoom)[0]);
-    console.log(minPad);
     const pad = Math.max(
       Math.abs(extent[2] - extent[0]) * 0.05,
       Math.abs(extent[3] - extent[1]) * 0.05,
@@ -49,27 +48,25 @@ function bestRenderParams(geojson, backgroundTileJSON) {
 
 
 function renderThumbnail(geojson, callback, options) {
-	options = Object.assign({
-		stylesheet: styles.default,
-		backgroundTileJSON: sources.mapboxSatellite(process.env.MapboxAccessToken),
-		//backgroundTileJSON: sources.naturalEarth(),
-	}, options);
+  options = Object.assign({
+    stylesheet: styles.default,
+    // backgroundTileJSON: sources.naturalEarth(),
+    backgroundTileJSON: sources.mapboxSatellite(process.env.MapboxAccessToken)
+  }, options);
   options.tileSize = options.backgroundTileJSON.tileSize || 256;
 
-  console.log(options.backgroundTileJSON);
 
   template.templatizeStylesheet(options.stylesheet, (err, template) => {
     const backgroundUri =  { data: options.backgroundTileJSON };
-		new TileJSON(backgroundUri, (err, backgroundSource) => {
-	    const overlaySource = new thumbnail.ThumbnailSource(geojson, template, {
+    new TileJSON(backgroundUri, (err, backgroundSource) => {
+      const overlaySource = new thumbnail.ThumbnailSource(geojson, template, {
         tileSize: options.tileSize
       }, options.mapOptions);
       const blendSource = new blend.BlendRasterSource(backgroundSource, overlaySource);
       const renderParams = Object.assign(bestRenderParams(geojson, options.backgroundTileJSON), {
         tileSize: options.tileSize,
         getTile: blendSource.getTile
-      })
-      console.log(renderParams);
+      });
       abaculus(renderParams, (err, image, headers) => {
         callback(err, image, headers, blendSource.stats);
       });
@@ -78,7 +75,7 @@ function renderThumbnail(geojson, callback, options) {
 }
 
 module.exports = {
-	renderThumbnail: renderThumbnail,
-	sources: sources,
-	styles: styles
-}
+  renderThumbnail: renderThumbnail,
+  sources: sources,
+  styles: styles
+};
