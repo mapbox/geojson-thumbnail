@@ -1,6 +1,6 @@
 {
   "name": "@mapbox/geojson-thumbnail",
-  "version": "0.9.0",
+  "version": "1.0.0",
   "description": "Generate thumbnails for GeoJSON features",
   "main": "index.js",
   "engines": {
@@ -13,7 +13,7 @@
     "pretest": "eslint cloudformation bin lib test index.js",
     "test": "nyc tape test/*.test.js | tap-spec",
     "coverage": "nyc --reporter lcov tape test/*.test.js && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage",
-     "docs": "documentation build --github index.js -f md > API.md",
+    "docs": "documentation build --github index.js -f md > API.md",
     "postinstall": "npm dedupe mapnik"
   },
   "pre-commit": [
