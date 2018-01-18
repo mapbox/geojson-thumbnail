@@ -46,7 +46,13 @@ function bestRenderParams(geojson, backgroundTileJSON) {
   };
 }
 
-
+/**
+ * Render a thumbnmail from a GeoJSON feature
+ * @param {Object} geojson - GeoJSON Feature or FeatureCollection
+ * @param {Function} callback - Callback called with rendered imageonce finished
+ * @param {Object} options
+ * @param {Object} [options.backgroundTileJSON] - Provide a custom TileJSON for the background layer
+ */
 function renderThumbnail(geojson, callback, options) {
   options = Object.assign({
     stylesheet: styles.default,

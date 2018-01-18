@@ -13,6 +13,7 @@
     "pretest": "eslint cloudformation bin lib test index.js",
     "test": "nyc tape test/*.test.js | tap-spec",
     "coverage": "nyc --reporter lcov tape test/*.test.js && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage",
+     "docs": "documentation build --github index.js -f md > API.md",
     "postinstall": "npm dedupe mapnik"
   },
   "repository": {
