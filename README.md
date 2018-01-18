@@ -1,4 +1,4 @@
-# geojson-thumbnail [![Build Status](https://travis-ci.org/mapbox/geojson-thumbnail.svg?branch=master)](https://travis-ci.org/mapbox/geojson-thumbnail)
+# geojson-thumbnail [![Build Status](https://travis-ci.org/mapbox/geojson-thumbnail.svg?branch=master)](https://travis-ci.org/mapbox/geojson-thumbnail) [![Coverage Status](https://coveralls.io/repos/github/mapbox/geojson-thumbnail/badge.svg?branch=master)](https://coveralls.io/github/mapbox/geojson-thumbnail?branch=master)
 
 Generate thumbnails for GeoJSON features
 
