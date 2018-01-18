@@ -1,0 +1,793 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "way!534605487!1",
+      "properties": {
+        "natural": "water",
+        "source": "NRCan-CanVec-7.0",
+        "water": "intermittent",
+        "osm:type": "way",
+        "osm:id": 534605487,
+        "osm:version": 1,
+        "osm:changeset": 53184613,
+        "osm:timestamp": 1508777798000,
+        "osm:uid": 239998,
+        "osm:user": "Sundance",
+        "dynamosm:max_osm_timestamp": 1508777798000,
+        "dynamosm:last_update_timestamp": 1508777936333,
+        "iso:3166_1": "CA",
+        "iso:3166_2": "CA-AB",
+        "osm:user:mapping_days": 1770,
+        "osm:user:changesetcount": 12773,
+        "osm:user:firstedit": "2010-03-02T16:45:13.000Z",
+        "osm:user:num_changes": 3692442
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -113.7569373,
+                53.4246672
+              ],
+              [
+                -113.7569051,
+                53.4244178
+              ],
+              [
+                -113.7566249,
+                53.4242191
+              ],
+              [
+                -113.7564713,
+                53.4236749
+              ],
+              [
+                -113.756504,
+                53.4232687
+              ],
+              [
+                -113.7563824,
+                53.4229667
+              ],
+              [
+                -113.7558791,
+                53.4226672
+              ],
+              [
+                -113.7554162,
+                53.4225415
+              ],
+              [
+                -113.7552409,
+                53.4225733
+              ],
+              [
+                -113.7550223,
+                53.4227082
+              ],
+              [
+                -113.7549276,
+                53.4227731
+              ],
+              [
+                -113.7547432,
+                53.4230067
+              ],
+              [
+                -113.7540429,
+                53.4235436
+              ],
+              [
+                -113.7534254,
+                53.4237414
+              ],
+              [
+                -113.7526315,
+                53.4237806
+              ],
+              [
+                -113.7524783,
+                53.423856
+              ],
+              [
+                -113.751633,
+                53.4238568
+              ],
+              [
+                -113.7509362,
+                53.4239927
+              ],
+              [
+                -113.7506915,
+                53.4241706
+              ],
+              [
+                -113.7507267,
+                53.4244596
+              ],
+              [
+                -113.7508987,
+                53.4246095
+              ],
+              [
+                -113.7511095,
+                53.4246476
+              ],
+              [
+                -113.7519402,
+                53.4246494
+              ],
+              [
+                -113.7528896,
+                53.4246964
+              ],
+              [
+                -113.7541585,
+                53.42468
+              ],
+              [
+                -113.7547164,
+                53.4246864
+              ],
+              [
+                -113.7552636,
+                53.4248398
+              ],
+              [
+                -113.7555318,
+                53.4249037
+              ],
+              [
+                -113.7562614,
+                53.4249485
+              ],
+              [
+                -113.75683,
+                53.4249549
+              ],
+              [
+                -113.7569373,
+                53.4246672
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -113.7506915,
+                53.4241706
+              ],
+              [
+                -113.7509362,
+                53.4239927
+              ],
+              [
+                -113.751633,
+                53.4238568
+              ],
+              [
+                -113.7524783,
+                53.423856
+              ],
+              [
+                -113.7526315,
+                53.4237806
+              ],
+              [
+                -113.7534254,
+                53.4237414
+              ],
+              [
+                -113.7540429,
+                53.4235436
+              ],
+              [
+                -113.7547432,
+                53.4230067
+              ],
+              [
+                -113.7549276,
+                53.4227731
+              ],
+              [
+                -113.7550223,
+                53.4227082
+              ],
+              [
+                -113.7552409,
+                53.4225733
+              ],
+              [
+                -113.7554162,
+                53.4225415
+              ],
+              [
+                -113.7558791,
+                53.4226672
+              ],
+              [
+                -113.7563824,
+                53.4229667
+              ],
+              [
+                -113.756504,
+                53.4232687
+              ],
+              [
+                -113.7564713,
+                53.4236749
+              ],
+              [
+                -113.7566504,
+                53.4243096
+              ],
+              [
+                -113.7566589,
+                53.4247656
+              ],
+              [
+                -113.7568192,
+                53.425175
+              ],
+              [
+                -113.7572393,
+                53.4254991
+              ],
+              [
+                -113.757816,
+                53.425566
+              ],
+              [
+                -113.7585971,
+                53.4255959
+              ],
+              [
+                -113.7587811,
+                53.4258008
+              ],
+              [
+                -113.7587251,
+                53.425973
+              ],
+              [
+                -113.7584517,
+                53.4262513
+              ],
+              [
+                -113.7578564,
+                53.4264928
+              ],
+              [
+                -113.7568653,
+                53.4268346
+              ],
+              [
+                -113.7561666,
+                53.4269042
+              ],
+              [
+                -113.7557324,
+                53.426678
+              ],
+              [
+                -113.7555003,
+                53.426253
+              ],
+              [
+                -113.7554649,
+                53.4254302
+              ],
+              [
+                -113.7552188,
+                53.4251031
+              ],
+              [
+                -113.7545636,
+                53.4248503
+              ],
+              [
+                -113.7528896,
+                53.4246964
+              ],
+              [
+                -113.7519402,
+                53.4246494
+              ],
+              [
+                -113.7511095,
+                53.4246476
+              ],
+              [
+                -113.7508987,
+                53.4246095
+              ],
+              [
+                -113.7507267,
+                53.4244596
+              ],
+              [
+                -113.7506915,
+                53.4241706
+              ]
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "osm:id": 98108401,
+        "osm:type": "way",
+        "osm:version": 2,
+        "osm:changeset": 53184613,
+        "osm:uid": 239998,
+        "osm:user": "Sundance",
+        "osm:timestamp": 1508777803000,
+        "water": "intermittent",
+        "source": "NRCan-CanVec-7.0",
+        "natural": "water",
+        "iso:3166_1": "CA",
+        "iso:3166_2": "CA-AB",
+        "osm:user:mapping_days": 1770,
+        "osm:user:changesetcount": 12773,
+        "osm:user:firstedit": "2010-03-02T16:45:13.000Z",
+        "osm:user:num_changes": 3692442,
+        "dynamosm:max_osm_timestamp": 1508777803000,
+        "dynamosm:last_update_timestamp": 1508777940297
+      },
+      "id": "way!98108401!2",
+      "deleted": true
+    },
+    {
+      "type": "Feature",
+      "id": "way!98107458!2",
+      "properties": {
+        "natural": "water",
+        "source": "NRCan-CanVec-7.0",
+        "water": "intermittent",
+        "osm:type": "way",
+        "osm:id": 98107458,
+        "osm:version": 2,
+        "osm:changeset": 53184613,
+        "osm:timestamp": 1508777799000,
+        "osm:uid": 239998,
+        "osm:user": "Sundance",
+        "dynamosm:max_osm_timestamp": 1508777799000,
+        "dynamosm:last_update_timestamp": 1508777940709,
+        "iso:3166_1": "CA",
+        "iso:3166_2": "CA-AB",
+        "osm:user:mapping_days": 1770,
+        "osm:user:changesetcount": 12773,
+        "osm:user:firstedit": "2010-03-02T16:45:13.000Z",
+        "osm:user:num_changes": 3692442
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -113.7685263,
+                53.4258527
+              ],
+              [
+                -113.7684845,
+                53.4257077
+              ],
+              [
+                -113.7679568,
+                53.4255176
+              ],
+              [
+                -113.7665508,
+                53.4254201
+              ],
+              [
+                -113.766533,
+                53.4253852
+              ],
+              [
+                -113.7663603,
+                53.4253594
+              ],
+              [
+                -113.7656762,
+                53.4254264
+              ],
+              [
+                -113.7645603,
+                53.4254288
+              ],
+              [
+                -113.7641468,
+                53.4254943
+              ],
+              [
+                -113.7640082,
+                53.4257863
+              ],
+              [
+                -113.7640654,
+                53.4265576
+              ],
+              [
+                -113.7643169,
+                53.42655
+              ],
+              [
+                -113.7644511,
+                53.4264893
+              ],
+              [
+                -113.7645634,
+                53.4264386
+              ],
+              [
+                -113.7646302,
+                53.4263502
+              ],
+              [
+                -113.7651905,
+                53.4261341
+              ],
+              [
+                -113.7657863,
+                53.4259878
+              ],
+              [
+                -113.766842,
+                53.4259297
+              ],
+              [
+                -113.7682945,
+                53.4259615
+              ],
+              [
+                -113.7685263,
+                53.4258527
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "way!534605467!1",
+      "properties": {
+        "source": "NRCan-CanVec-7.0",
+        "waterway": "stream",
+        "osm:type": "way",
+        "osm:id": 534605467,
+        "osm:version": 1,
+        "osm:changeset": 53184613,
+        "osm:timestamp": 1508777797000,
+        "osm:uid": 239998,
+        "osm:user": "Sundance",
+        "dynamosm:max_osm_timestamp": 1508777797000,
+        "dynamosm:last_update_timestamp": 1508777940770,
+        "iso:3166_1": "CA",
+        "iso:3166_2": "CA-AB",
+        "osm:user:mapping_days": 1770,
+        "osm:user:changesetcount": 12773,
+        "osm:user:firstedit": "2010-03-02T16:45:13.000Z",
+        "osm:user:num_changes": 3692442
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -113.7637394,
+            53.4266746
+          ],
+          [
+            -113.7633853,
+            53.4266746
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "way!534605470!1",
+      "properties": {
+        "source": "NRCan-CanVec-7.0",
+        "waterway": "stream",
+        "osm:type": "way",
+        "osm:id": 534605470,
+        "osm:version": 1,
+        "osm:changeset": 53184613,
+        "osm:timestamp": 1508777797000,
+        "osm:uid": 239998,
+        "osm:user": "Sundance",
+        "dynamosm:max_osm_timestamp": 1508777797000,
+        "dynamosm:last_update_timestamp": 1508777940365,
+        "iso:3166_1": "CA",
+        "iso:3166_2": "CA-AB",
+        "osm:user:mapping_days": 1770,
+        "osm:user:changesetcount": 12773,
+        "osm:user:firstedit": "2010-03-02T16:45:13.000Z",
+        "osm:user:num_changes": 3692442
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -113.762527,
+            53.4266682
+          ],
+          [
+            -113.7621944,
+            53.426649
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "way!534605483!1",
+      "properties": {
+        "layer": "-1",
+        "source": "NRCan-CanVec-7.0",
+        "tunnel": "culvert",
+        "waterway": "stream",
+        "osm:type": "way",
+        "osm:id": 534605483,
+        "osm:version": 1,
+        "osm:changeset": 53184613,
+        "osm:timestamp": 1508777798000,
+        "osm:uid": 239998,
+        "osm:user": "Sundance",
+        "dynamosm:max_osm_timestamp": 1508777798000,
+        "dynamosm:last_update_timestamp": 1508777935957,
+        "iso:3166_1": "CA",
+        "iso:3166_2": "CA-AB",
+        "osm:user:mapping_days": 1770,
+        "osm:user:changesetcount": 12773,
+        "osm:user:firstedit": "2010-03-02T16:45:13.000Z",
+        "osm:user:num_changes": 3692442
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -113.7640505,
+            53.4266618
+          ],
+          [
+            -113.7637394,
+            53.4266746
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "way!98108669!3",
+      "properties": {
+        "source": "NRCan-CanVec-7.0",
+        "waterway": "stream",
+        "osm:type": "way",
+        "osm:id": 98108669,
+        "osm:version": 3,
+        "osm:changeset": 53184613,
+        "osm:timestamp": 1508777800000,
+        "osm:uid": 239998,
+        "osm:user": "Sundance",
+        "dynamosm:max_osm_timestamp": 1508777800000,
+        "dynamosm:last_update_timestamp": 1508777940627,
+        "iso:3166_1": "CA",
+        "iso:3166_2": "CA-AB",
+        "osm:user:mapping_days": 1770,
+        "osm:user:changesetcount": 12773,
+        "osm:user:firstedit": "2010-03-02T16:45:13.000Z",
+        "osm:user:num_changes": 3692442
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -113.7644511,
+            53.4264893
+          ],
+          [
+            -113.7642758,
+            53.4266362
+          ],
+          [
+            -113.7640505,
+            53.4266618
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "way!534605476!1",
+      "properties": {
+        "layer": "-1",
+        "source": "NRCan-CanVec-7.0",
+        "tunnel": "culvert",
+        "waterway": "stream",
+        "osm:type": "way",
+        "osm:id": 534605476,
+        "osm:version": 1,
+        "osm:changeset": 53184613,
+        "osm:timestamp": 1508777797000,
+        "osm:uid": 239998,
+        "osm:user": "Sundance",
+        "dynamosm:max_osm_timestamp": 1508777797000,
+        "dynamosm:last_update_timestamp": 1508777940735,
+        "iso:3166_1": "CA",
+        "iso:3166_2": "CA-AB",
+        "osm:user:mapping_days": 1770,
+        "osm:user:changesetcount": 12773,
+        "osm:user:firstedit": "2010-03-02T16:45:13.000Z",
+        "osm:user:num_changes": 3692442
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -113.7633853,
+            53.4266746
+          ],
+          [
+            -113.762527,
+            53.4266682
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "way!534605482!1",
+      "properties": {
+        "layer": "-1",
+        "source": "NRCan-CanVec-7.0",
+        "tunnel": "culvert",
+        "waterway": "stream",
+        "osm:type": "way",
+        "osm:id": 534605482,
+        "osm:version": 1,
+        "osm:changeset": 53184613,
+        "osm:timestamp": 1508777798000,
+        "osm:uid": 239998,
+        "osm:user": "Sundance",
+        "dynamosm:max_osm_timestamp": 1508777798000,
+        "dynamosm:last_update_timestamp": 1508777935570,
+        "iso:3166_1": "CA",
+        "iso:3166_2": "CA-AB",
+        "osm:user:mapping_days": 1770,
+        "osm:user:changesetcount": 12773,
+        "osm:user:firstedit": "2010-03-02T16:45:13.000Z",
+        "osm:user:num_changes": 3692442
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -113.7621944,
+            53.426649
+          ],
+          [
+            -113.7618511,
+            53.4266618
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "way!534605489!1",
+      "properties": {
+        "natural": "water",
+        "source": "NRCan-CanVec-7.0",
+        "water": "intermittent",
+        "osm:type": "way",
+        "osm:id": 534605489,
+        "osm:version": 1,
+        "osm:changeset": 53184613,
+        "osm:timestamp": 1508777798000,
+        "osm:uid": 239998,
+        "osm:user": "Sundance",
+        "dynamosm:max_osm_timestamp": 1508777798000,
+        "dynamosm:last_update_timestamp": 1508777936323,
+        "iso:3166_1": "CA",
+        "iso:3166_2": "CA-AB",
+        "osm:user:mapping_days": 1770,
+        "osm:user:changesetcount": 12773,
+        "osm:user:firstedit": "2010-03-02T16:45:13.000Z",
+        "osm:user:num_changes": 3692442
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -113.7587811,
+                53.4258008
+              ],
+              [
+                -113.7585971,
+                53.4255959
+              ],
+              [
+                -113.757816,
+                53.425566
+              ],
+              [
+                -113.7572393,
+                53.4254991
+              ],
+              [
+                -113.7568192,
+                53.425175
+              ],
+              [
+                -113.7559503,
+                53.4252036
+              ],
+              [
+                -113.7556509,
+                53.425309
+              ],
+              [
+                -113.7554649,
+                53.4254302
+              ],
+              [
+                -113.7555003,
+                53.426253
+              ],
+              [
+                -113.7557324,
+                53.426678
+              ],
+              [
+                -113.7561666,
+                53.4269042
+              ],
+              [
+                -113.7568653,
+                53.4268346
+              ],
+              [
+                -113.7578564,
+                53.4264928
+              ],
+              [
+                -113.7584517,
+                53.4262513
+              ],
+              [
+                -113.7587251,
+                53.425973
+              ],
+              [
+                -113.7587811,
+                53.4258008
+              ]
+            ]
+          ]
+        ]
+      }
+    }
+  ],
+  "id": "a72fd24f51817ddf6364d230fe6cb677",
+  "properties": {
+    "day": "2017-10-23",
+    "layer": "water"
+  }
+}

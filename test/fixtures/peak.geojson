@@ -1,0 +1,64 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "node!5046488953!2",
+      "properties": {
+        "name": "Dallandsheia",
+        "natural": "peak",
+        "ssr:hovednavnetype": "Terreng",
+        "ssr:navnetype": "Hei",
+        "ssr:stedsnr": "810459",
+        "ssr:url": "https://stadnamn.kartverket.no/810459"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.8248916,
+          58.1350856
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "node!5045810511!2",
+      "properties": {
+        "man_made": "cairn",
+        "name": "Buheia",
+        "natural": "peak",
+        "ssr:hovednavnetype": "Terreng",
+        "ssr:navnetype": "Hei",
+        "ssr:stedsnr": "82440",
+        "ssr:url": "https://stadnamn.kartverket.no/82440"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.8205491,
+          58.1316205
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "node!5046488952!2",
+      "properties": {
+        "alt_name": "Rundaheia",
+        "name": "Runneheia",
+        "natural": "peak",
+        "ssr:hovednavnetype": "Terreng",
+        "ssr:navnetype": "Ås",
+        "ssr:stedsnr": "142441",
+        "ssr:url": "https://stadnamn.kartverket.no/142441"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.8302238,
+          58.1333552
+        ]
+      }
+    }
+  ]
+}
