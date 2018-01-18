@@ -18,8 +18,7 @@
   },
   "pre-commit": [
     "pretest",
-    "test",
-    "docs"
+    "test"
   ],
   "repository": {
     "type": "git",
