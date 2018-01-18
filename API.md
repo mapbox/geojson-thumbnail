@@ -7,10 +7,14 @@
 -   [mapboxSatellite](#mapboxsatellite)
 -   [naturalEarth](#naturalearth)
 -   [default](#default)
+-   [tileDistance](#tiledistance)
+-   [diagonalDistance](#diagonaldistance)
+-   [tileZoomBboxFits](#tilezoombboxfits)
+-   [decideZoom](#decidezoom)
 
 ## renderThumbnail
 
-[index.js:56-81](https://github.com/mapbox/geojson-thumbnail/blob/0f51ca1019ef6567d540f0151bd7dfe2e7f60c99/index.js#L56-L81 "Source code on GitHub")
+[index.js:71-96](https://github.com/mapbox/geojson-thumbnail/blob/f39797fcf6560eeb13e26d1e2fcd42e8515110aa/index.js#L71-L96 "Source code on GitHub")
 
 Render a thumbnmail from a GeoJSON feature
 
@@ -23,7 +27,7 @@ Render a thumbnmail from a GeoJSON feature
 
 ## mapboxStreets
 
-[lib/sources.js:8-24](https://github.com/mapbox/geojson-thumbnail/blob/0f51ca1019ef6567d540f0151bd7dfe2e7f60c99/lib/sources.js#L8-L24 "Source code on GitHub")
+[lib/sources.js:8-24](https://github.com/mapbox/geojson-thumbnail/blob/f39797fcf6560eeb13e26d1e2fcd42e8515110aa/lib/sources.js#L8-L24 "Source code on GitHub")
 
 Mapbox Streets <https://www.mapbox.com/maps/streets/>
 
@@ -35,7 +39,7 @@ Returns **[object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 
 ## mapboxSatellite
 
-[lib/sources.js:31-46](https://github.com/mapbox/geojson-thumbnail/blob/0f51ca1019ef6567d540f0151bd7dfe2e7f60c99/lib/sources.js#L31-L46 "Source code on GitHub")
+[lib/sources.js:31-46](https://github.com/mapbox/geojson-thumbnail/blob/f39797fcf6560eeb13e26d1e2fcd42e8515110aa/lib/sources.js#L31-L46 "Source code on GitHub")
 
 Mapbox Satellite <https://www.mapbox.com/maps/satellite/>
 
@@ -47,7 +51,7 @@ Returns **[object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 
 ## naturalEarth
 
-[lib/sources.js:52-67](https://github.com/mapbox/geojson-thumbnail/blob/0f51ca1019ef6567d540f0151bd7dfe2e7f60c99/lib/sources.js#L52-L67 "Source code on GitHub")
+[lib/sources.js:52-67](https://github.com/mapbox/geojson-thumbnail/blob/f39797fcf6560eeb13e26d1e2fcd42e8515110aa/lib/sources.js#L52-L67 "Source code on GitHub")
 
 Natural Earth II raster tiles from <http://naturalearthtiles.lukasmartinelli.ch/>
 
@@ -55,8 +59,63 @@ Returns **[object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 
 ## default
 
-[lib/styles.js:10-10](https://github.com/mapbox/geojson-thumbnail/blob/0f51ca1019ef6567d540f0151bd7dfe2e7f60c99/lib/styles.js#L10-L10 "Source code on GitHub")
+[lib/styles.js:10-10](https://github.com/mapbox/geojson-thumbnail/blob/f39797fcf6560eeb13e26d1e2fcd42e8515110aa/lib/styles.js#L10-L10 "Source code on GitHub")
 
 A default style that visualizes geometries
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Mapnik Stylesheet
+
+## tileDistance
+
+[lib/zoom.js:10-15](https://github.com/mapbox/geojson-thumbnail/blob/f39797fcf6560eeb13e26d1e2fcd42e8515110aa/lib/zoom.js#L10-L15 "Source code on GitHub")
+
+Calculate the diagonal distance of a tile
+
+**Parameters**
+
+-   `zoomLevel` **[Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** 
+
+Returns **[Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** distance in meters
+
+## diagonalDistance
+
+[lib/zoom.js:26-32](https://github.com/mapbox/geojson-thumbnail/blob/f39797fcf6560eeb13e26d1e2fcd42e8515110aa/lib/zoom.js#L26-L32 "Source code on GitHub")
+
+Calculate the diagonal distance of a bounding box
+
+* * *
+
+ |\\   |
+ | \\  |
+ |\_\_\_\|
+
+**Parameters**
+
+-   `bbox` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)>** 
+
+Returns **[Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** distance in meters
+
+## tileZoomBboxFits
+
+[lib/zoom.js:39-50](https://github.com/mapbox/geojson-thumbnail/blob/f39797fcf6560eeb13e26d1e2fcd42e8515110aa/lib/zoom.js#L39-L50 "Source code on GitHub")
+
+Find the max zoom level a bounding box would fit in
+
+**Parameters**
+
+-   `bbox` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)>** 
+
+Returns **[Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** zoom level
+
+## decideZoom
+
+[lib/zoom.js:58-62](https://github.com/mapbox/geojson-thumbnail/blob/f39797fcf6560eeb13e26d1e2fcd42e8515110aa/lib/zoom.js#L58-L62 "Source code on GitHub")
+
+Given a bounding box of features try to find the best zoom level
+for the tiles to render to stitch image together
+
+**Parameters**
+
+-   `bbox` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)>** 
+
+Returns **[Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** zoom level to request tiles at

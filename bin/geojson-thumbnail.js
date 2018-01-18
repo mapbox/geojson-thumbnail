@@ -4,6 +4,7 @@
 const program = require('commander');
 const fs = require('fs');
 const path = require('path');
+const sources = require('../lib/sources');
 const index = require('../index');
 
 program
@@ -24,6 +25,8 @@ const run = (input, output) => {
         Math.floor(image.length / 1024), 'kb'
       );
     });
+  }, {
+    backgroundTileJSON: sources.naturalEarth()
   });
 };
 

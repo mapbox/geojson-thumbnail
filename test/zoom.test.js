@@ -6,7 +6,7 @@ const bbox = require('@turf/bbox');
 
 const zoom = require('../lib/zoom');
 
-tape('[decideZoom]', (assert) => {
+tape('decideZoom', (assert) => {
   function fixtureBbox(fixturePath) {
     const feature = JSON.parse(fs.readFileSync(path.join(__dirname, fixturePath)));
     return bbox(feature);
