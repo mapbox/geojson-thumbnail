@@ -2,8 +2,10 @@ language: node_js
 sudo: false
 node_js:
 - '4'
+- '6'
 before_install:
 - npm install coveralls
+- npm install npm@5.6 -g
 addons:
   apt:
     sources:
