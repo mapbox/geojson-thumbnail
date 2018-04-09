@@ -34,14 +34,17 @@ tape('renderThumbnail peak', (assert) => {
   assertThumbnailRenders('/fixtures/peak.geojson', assert);
 });
 
-tape('renderThumbnail as png with best compression', (assert) => {
+tape('renderThumbnail as png with better compression', (assert) => {
   assertThumbnailRenders('/fixtures/peak.geojson', assert, {
-    imageEncoding: 'png8:m=h:z=8'
+    thumbnailEncoding: 'png8:m=h:z=8',
+    blendFormat: 'png',
+    blendCompression: 8
   });
 });
 
 tape('renderThumbnail as jpg', (assert) => {
   assertThumbnailRenders('/fixtures/peak.geojson', assert, {
-    imageEncoding: 'jpeg80'
+    thumbnailEncoding: 'jpeg80',
+    blendFormat: 'jpeg'
   });
 });
