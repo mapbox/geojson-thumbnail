@@ -67,9 +67,7 @@ function bestRenderParams(geojson, backgroundTileJSON) {
  * @param {Function} callback - Callback called with rendered imageonce finished
  * @param {Object} options
  * @param {Object} [options.backgroundTileJSON] - Provide a custom TileJSON for the background layer
- * @param {string} [options.thumbnailEncoding] - Provide Mapnik image encoding options used to create the thumbnail https://github.com/mapnik/mapnik/wiki/Image-IO
  * @param {string} [options.blendFormat] - Format to use when blended together with the background image. https://github.com/mapbox/node-blend#options
- * @param {string} [options.blendPngCompression] - Range from 1-9 specifying how good the compression level should be https://github.com/mapbox/node-blend#options
  */
 function renderThumbnail(geojson, callback, options) {
   if (!geojson) throw new Error('Cannot render thumbnail without GeoJSON passed');
@@ -85,8 +83,7 @@ function renderThumbnail(geojson, callback, options) {
   options.tileSize = options.backgroundTileJSON.tileSize || 256;
 
   const imageOptions = {
-    tileSize: options.tileSize,
-    encoding: options.thumbnailEncoding
+    tileSize: options.tileSize
   };
 
   template.templatizeStylesheet(options.stylesheet, (err, template) => {
@@ -96,7 +93,6 @@ function renderThumbnail(geojson, callback, options) {
       const blendSource = new blend.BlendRasterSource(backgroundSource, overlaySource);
       const renderParams = Object.assign(bestRenderParams(geojson, options.backgroundTileJSON), {
         format: options.blendFormat || 'png',
-        compression: options.blendPngCompression || 6,
         tileSize: options.tileSize,
         getTile: blendSource.getTile
       });

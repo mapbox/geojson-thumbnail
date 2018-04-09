@@ -15,15 +15,12 @@ program
 const run = (input, output) => {
   const geojson = JSON.parse(fs.readFileSync(input));
   const options = {
-    backgroundTileJSON: sources.naturalEarth()
+    backgroundTileJSON: sources.mapboxSatellite(process.env.MapboxAccessToken)
   };
 
   if (output.endsWith('.png')) {
     options.blendFormat = 'png';
-    options.blendPngCompression = 3;
   } else if (output.endsWith('.jpg')) {
-    // options.thumbnailEncoding = 'jpeg80';
-    options.thumbnailEncoding = 'png8:m=h:z=3';
     options.blendFormat = 'jpeg';
   }
 

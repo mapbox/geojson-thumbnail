@@ -37,8 +37,7 @@ tape('renderThumbnail peak', (assert) => {
 tape('renderThumbnail as png with better compression', (assert) => {
   assertThumbnailRenders('/fixtures/peak.geojson', assert, {
     thumbnailEncoding: 'png8:m=h:z=8',
-    blendFormat: 'png',
-    blendCompression: 8
+    blendFormat: 'png'
   });
 });
 
