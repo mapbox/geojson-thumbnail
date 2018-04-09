@@ -6,16 +6,16 @@ const sources = require('../lib/sources');
 const index = require('../index');
 
 
-function assertThumbnailRenders(fixturePath, assert) {
+function assertThumbnailRenders(fixturePath, assert, options) {
   const geojson = JSON.parse(fs.readFileSync(path.join(__dirname, fixturePath)));
 
   index.renderThumbnail(geojson, (err, image) => {
     assert.ifError(err, 'preview should not fail');
     assert.true(image.length > 10 * 1024, `preview image should have reasonable image size ${image.length}`);
     assert.end();
-  }, {
+  }, Object.assign({
     backgroundTileJSON: sources.naturalEarth()
-  });
+  }, options));
 }
 
 tape('renderThumbnail water', (assert) => {
@@ -32,4 +32,16 @@ tape('renderThumbnail building', (assert) => {
 
 tape('renderThumbnail peak', (assert) => {
   assertThumbnailRenders('/fixtures/peak.geojson', assert);
+});
+
+tape('renderThumbnail as png with best compression', (assert) => {
+  assertThumbnailRenders('/fixtures/peak.geojson', assert, {
+    imageEncoding: 'png8:m=h:z=8'
+  });
+});
+
+tape('renderThumbnail as jpg', (assert) => {
+  assertThumbnailRenders('/fixtures/peak.geojson', assert, {
+    imageEncoding: 'jpeg80'
+  });
 });

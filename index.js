@@ -69,6 +69,11 @@ function bestRenderParams(geojson, backgroundTileJSON) {
  * @param {Object} [options.backgroundTileJSON] - Provide a custom TileJSON for the background layer
  */
 function renderThumbnail(geojson, callback, options) {
+  if (!geojson) throw new Error('Cannot render thumbnail without GeoJSON passed');
+  // someone accidentally passed in a callback as options
+  if (typeof options === 'function') throw new Error('Options needs to be an object not a function');
+  if (typeof callback !== 'function') throw new Error('Callback needs to be a function not an object');
+
   options = Object.assign({
     stylesheet: styles.default,
     // backgroundTileJSON: sources.naturalEarth(),
@@ -76,13 +81,15 @@ function renderThumbnail(geojson, callback, options) {
   }, options);
   options.tileSize = options.backgroundTileJSON.tileSize || 256;
 
+  const imageOptions = {
+    tileSize: options.tileSize,
+    encoding: options.imageEncoding
+  };
 
   template.templatizeStylesheet(options.stylesheet, (err, template) => {
     const backgroundUri =  { data: options.backgroundTileJSON };
     new TileJSON(backgroundUri, (err, backgroundSource) => {
-      const overlaySource = new thumbnail.ThumbnailSource(geojson, template, {
-        tileSize: options.tileSize
-      }, options.mapOptions);
+      const overlaySource = new thumbnail.ThumbnailSource(geojson, template, imageOptions, options.mapOptions);
       const blendSource = new blend.BlendRasterSource(backgroundSource, overlaySource);
       const renderParams = Object.assign(bestRenderParams(geojson, options.backgroundTileJSON), {
         tileSize: options.tileSize,
