@@ -47,3 +47,9 @@ tape('renderThumbnail as jpg', (assert) => {
     blendFormat: 'jpeg'
   });
 });
+
+tape('renderThumbnail with max zoom', (assert) => {
+  assertThumbnailRenders('/fixtures/peak.geojson', assert, {
+    thumbnailMaxZoom: 4
+  });
+});
