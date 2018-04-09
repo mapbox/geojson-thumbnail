@@ -18,6 +18,7 @@ function bestRenderParams(geojson, backgroundTileJSON, minZoom, maxZoom) {
   if (optimalZoom < backgroundTileJSON.minzoom) {
     optimalZoom = backgroundTileJSON.minzoom;
   }
+  optimalZoom = Math.max(minZoom, Math.min(maxZoom, optimalZoom));
 
   function paddedExtent(geojson) {
     const extent = bbox(geojson);
@@ -30,6 +31,7 @@ function bestRenderParams(geojson, backgroundTileJSON, minZoom, maxZoom) {
 
     // TODO: Padding is super hacky without any real background checking what we should do
     let minPad = Math.abs(sm.ll([0, 0], optimalZoom)[0] - sm.ll([10, 10], optimalZoom)[0]);
+
     if (width < minSize) {
       minPad = Math.abs(sm.ll([0, 0], optimalZoom)[0] - sm.ll([minSize - width, 10], optimalZoom)[0]);
     }
@@ -51,10 +53,9 @@ function bestRenderParams(geojson, backgroundTileJSON, minZoom, maxZoom) {
   }
 
   const bounds = paddedExtent(geojson);
-  console.log('ZOOM', optimalZoom, Math.max(minZoom, Math.min(maxZoom, optimalZoom)));
   return {
     // ensure zoom is within min and max bounds configured for thumbnail
-    zoom: Math.max(minZoom, Math.min(maxZoom, optimalZoom)),
+    zoom: optimalZoom,
     scale: 1,
     format: 'png',
     bbox: bounds,
