@@ -10,7 +10,7 @@ const bbox = require('@turf/bbox');
 const abaculus = require('@mapbox/abaculus');
 const sm = new (require('@mapbox/sphericalmercator'))();
 
-function bestRenderParams(geojson, backgroundTileJSON) {
+function bestRenderParams(geojson, backgroundTileJSON, minZoom, maxZoom) {
   let optimalZoom = zoom.decideZoom(bbox(geojson));
   if (optimalZoom > backgroundTileJSON.maxzoom) {
     optimalZoom = backgroundTileJSON.maxzoom;
@@ -18,6 +18,7 @@ function bestRenderParams(geojson, backgroundTileJSON) {
   if (optimalZoom < backgroundTileJSON.minzoom) {
     optimalZoom = backgroundTileJSON.minzoom;
   }
+  optimalZoom = Math.max(minZoom, Math.min(maxZoom, optimalZoom));
 
   function paddedExtent(geojson) {
     const extent = bbox(geojson);
@@ -30,6 +31,7 @@ function bestRenderParams(geojson, backgroundTileJSON) {
 
     // TODO: Padding is super hacky without any real background checking what we should do
     let minPad = Math.abs(sm.ll([0, 0], optimalZoom)[0] - sm.ll([10, 10], optimalZoom)[0]);
+
     if (width < minSize) {
       minPad = Math.abs(sm.ll([0, 0], optimalZoom)[0] - sm.ll([minSize - width, 10], optimalZoom)[0]);
     }
@@ -52,6 +54,7 @@ function bestRenderParams(geojson, backgroundTileJSON) {
 
   const bounds = paddedExtent(geojson);
   return {
+    // ensure zoom is within min and max bounds configured for thumbnail
     zoom: optimalZoom,
     scale: 1,
     format: 'png',
@@ -67,6 +70,8 @@ function bestRenderParams(geojson, backgroundTileJSON) {
  * @param {Function} callback - Callback called with rendered imageonce finished
  * @param {Object} options
  * @param {Object} [options.backgroundTileJSON] - Provide a custom TileJSON for the background layer
+ * @param {Number} [options.thumbnailMinZoom] - Specify a min zoom level to render thumbnail
+ * @param {Number} [options.thumbnailMaxZoom] - Specify a max zoom level to render thumbnail
  * @param {string} [options.blendFormat] - Format to use when blended together with the background image. https://github.com/mapbox/node-blend#options
  */
 function renderThumbnail(geojson, callback, options) {
@@ -76,6 +81,8 @@ function renderThumbnail(geojson, callback, options) {
   if (typeof callback !== 'function') throw new Error('Callback needs to be a function not an object');
 
   options = Object.assign({
+    thumbnailMinZoom: 0,
+    thumbnailMaxZoom: 22,
     stylesheet: styles.default,
     // backgroundTileJSON: sources.naturalEarth(),
     backgroundTileJSON: sources.mapboxSatellite(process.env.MapboxAccessToken)
@@ -91,7 +98,7 @@ function renderThumbnail(geojson, callback, options) {
     new TileJSON(backgroundUri, (err, backgroundSource) => {
       const overlaySource = new thumbnail.ThumbnailSource(geojson, template, imageOptions, options.mapOptions);
       const blendSource = new blend.BlendRasterSource(backgroundSource, overlaySource);
-      const renderParams = Object.assign(bestRenderParams(geojson, options.backgroundTileJSON), {
+      const renderParams = Object.assign(bestRenderParams(geojson, options.backgroundTileJSON, options.thumbnailMinZoom, options.thumbnailMaxZoom), {
         format: options.blendFormat || 'png',
         tileSize: options.tileSize,
         getTile: blendSource.getTile
