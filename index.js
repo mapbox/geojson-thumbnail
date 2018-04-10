@@ -67,8 +67,14 @@ function bestRenderParams(geojson, backgroundTileJSON) {
  * @param {Function} callback - Callback called with rendered imageonce finished
  * @param {Object} options
  * @param {Object} [options.backgroundTileJSON] - Provide a custom TileJSON for the background layer
+ * @param {string} [options.blendFormat] - Format to use when blended together with the background image. https://github.com/mapbox/node-blend#options
  */
 function renderThumbnail(geojson, callback, options) {
+  if (!geojson) throw new Error('Cannot render thumbnail without GeoJSON passed');
+  // someone accidentally passed in a callback as options
+  if (typeof options === 'function') throw new Error('Options needs to be an object not a function');
+  if (typeof callback !== 'function') throw new Error('Callback needs to be a function not an object');
+
   options = Object.assign({
     stylesheet: styles.default,
     // backgroundTileJSON: sources.naturalEarth(),
@@ -76,15 +82,17 @@ function renderThumbnail(geojson, callback, options) {
   }, options);
   options.tileSize = options.backgroundTileJSON.tileSize || 256;
 
+  const imageOptions = {
+    tileSize: options.tileSize
+  };
 
   template.templatizeStylesheet(options.stylesheet, (err, template) => {
     const backgroundUri =  { data: options.backgroundTileJSON };
     new TileJSON(backgroundUri, (err, backgroundSource) => {
-      const overlaySource = new thumbnail.ThumbnailSource(geojson, template, {
-        tileSize: options.tileSize
-      }, options.mapOptions);
+      const overlaySource = new thumbnail.ThumbnailSource(geojson, template, imageOptions, options.mapOptions);
       const blendSource = new blend.BlendRasterSource(backgroundSource, overlaySource);
       const renderParams = Object.assign(bestRenderParams(geojson, options.backgroundTileJSON), {
+        format: options.blendFormat || 'png',
         tileSize: options.tileSize,
         getTile: blendSource.getTile
       });

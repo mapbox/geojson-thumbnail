@@ -14,6 +14,16 @@ program
 
 const run = (input, output) => {
   const geojson = JSON.parse(fs.readFileSync(input));
+  const options = {
+    backgroundTileJSON: sources.mapboxSatellite(process.env.MapboxAccessToken)
+  };
+
+  if (output.endsWith('.png')) {
+    options.blendFormat = 'png';
+  } else if (output.endsWith('.jpg')) {
+    options.blendFormat = 'jpeg';
+  }
+
   index.renderThumbnail(geojson, function onImageRendered(err, image, headers, stats) {
     if (err) throw err;
     fs.writeFile(output, image, (err) => {
@@ -25,9 +35,7 @@ const run = (input, output) => {
         Math.floor(image.length / 1024), 'kb'
       );
     });
-  }, {
-    backgroundTileJSON: sources.naturalEarth()
-  });
+  }, options);
 };
 
 if (program.args.length < 2) {
