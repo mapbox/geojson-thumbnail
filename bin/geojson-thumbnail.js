@@ -10,35 +10,39 @@ const index = require('../index');
 program
   .usage('<input file> <output file>')
   .description('Render a GeoJSON thumbnail')
-  .option('--background')
+  .option('--background-satellite')
+  .option('--background-streets')
   .option('--stylesheet <f>')
   .option('--min-zoom <n>')
   .option('--max-zoom <n>')
   .parse(process.argv);
 
-const run = (input, output, minZoom, maxZoom, hasBackground, stylesheetPath) => {
+function run(input, output, minZoom, maxZoom, satellite, streets, stylesheetPath) {
   const geojson = JSON.parse(fs.readFileSync(input));
-  const options = {
-    backgroundTileJSON: hasBackground ? sources.mapboxSatellite(process.env.MapboxAccessToken) : null
-  };
+  const options = { };
+
+  if (satellite) {
+    options.background = { tilejson: sources.mapboxStellite(process.env.MapboxAccessToken) };
+  } else if (streets) {
+    options.background = { tilejson: sources.mapboxStreets(process.env.MapboxAccessToken) };
+  }
 
   if (stylesheetPath) {
     options.stylesheet = fs.readFileSync(path.normalize(stylesheetPath), 'utf8');
   }
 
   if (output.endsWith('.png')) {
-    options.blendFormat = 'png';
+    options.format = 'png';
   } else if (output.endsWith('.jpg')) {
-    options.blendFormat = 'jpeg';
+    options.format = 'jpeg';
   }
 
   if (maxZoom) {
-    options.thumbnailMaxZoom = maxZoom;
+    options.maxzoom = maxZoom;
   }
   if (minZoom) {
-    options.thumbnailMinZoom = minZoom;
+    options.minzoom = minZoom;
   }
-
 
   index.renderThumbnail(geojson, function onImageRendered(err, image, headers, stats) {
     if (err) throw err;
@@ -52,11 +56,11 @@ const run = (input, output, minZoom, maxZoom, hasBackground, stylesheetPath) => 
       );
     });
   }, options);
-};
+}
 
 if (program.args.length < 2) {
   program.outputHelp();
 } else {
-  run(program.args[0], program.args[1], program.minZoom, program.maxZoom, program.background, program.stylesheet);
+  run(program.args[0], program.args[1], parseInt(program.minZoom), parseInt(program.maxZoom), program.backgroundSatellite, program.backgroundStreets, program.stylesheet, program.accessToken);
 }
 
