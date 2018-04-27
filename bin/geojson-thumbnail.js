@@ -10,15 +10,21 @@ const index = require('../index');
 program
   .usage('<input file> <output file>')
   .description('Render a GeoJSON thumbnail')
+  .option('--background')
+  .option('--stylesheet <f>')
   .option('--min-zoom <n>')
   .option('--max-zoom <n>')
   .parse(process.argv);
 
-const run = (input, output, minZoom, maxZoom) => {
+const run = (input, output, minZoom, maxZoom, hasBackground, stylesheetPath) => {
   const geojson = JSON.parse(fs.readFileSync(input));
   const options = {
-    backgroundTileJSON: sources.mapboxSatellite(process.env.MapboxAccessToken)
+    backgroundTileJSON: hasBackground ? sources.mapboxSatellite(process.env.MapboxAccessToken) : null
   };
+
+  if (stylesheetPath) {
+    options.stylesheet = fs.readFileSync(path.normalize(stylesheetPath), 'utf8');
+  }
 
   if (output.endsWith('.png')) {
     options.blendFormat = 'png';
@@ -51,6 +57,6 @@ const run = (input, output, minZoom, maxZoom) => {
 if (program.args.length < 2) {
   program.outputHelp();
 } else {
-  run(program.args[0], program.args[1], program.minZoom, program.maxZoom);
+  run(program.args[0], program.args[1], program.minZoom, program.maxZoom, program.background, program.stylesheet);
 }
 

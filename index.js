@@ -87,13 +87,28 @@ function renderThumbnail(geojson, callback, options) {
     // backgroundTileJSON: sources.naturalEarth(),
     backgroundTileJSON: sources.mapboxSatellite(process.env.MapboxAccessToken)
   }, options);
-  options.tileSize = options.backgroundTileJSON.tileSize || 256;
+  options.tileSize = (options.backgroundTileJSON && options.backgroundTileJSON.tileSize) || 256;
 
   const imageOptions = {
     tileSize: options.tileSize
   };
 
-  template.templatizeStylesheet(options.stylesheet, (err, template) => {
+  function renderOnlyOverlay(template) {
+    const overlaySource = new thumbnail.ThumbnailSource(geojson, template, imageOptions, options.mapOptions);
+    const renderParams = Object.assign(bestRenderParams(geojson, {
+      maxzoom: 22,
+      minzoom: 0
+    }, options.thumbnailMinZoom, options.thumbnailMaxZoom), {
+      format: options.blendFormat || 'png',
+      tileSize: options.tileSize,
+      getTile: overlaySource.getTile.bind(overlaySource)
+    });
+    abaculus(renderParams, (err, image, headers) => {
+      callback(err, image, headers, overlaySource.stats);
+    });
+  }
+
+  function renderBlended(template) {
     const backgroundUri =  { data: options.backgroundTileJSON };
     new TileJSON(backgroundUri, (err, backgroundSource) => {
       const overlaySource = new thumbnail.ThumbnailSource(geojson, template, imageOptions, options.mapOptions);
@@ -107,6 +122,15 @@ function renderThumbnail(geojson, callback, options) {
         callback(err, image, headers, blendSource.stats);
       });
     });
+  }
+
+  template.templatizeStylesheet(options.stylesheet, (err, template) => {
+    // If no background specified we only render the overlay
+    if (!options.backgroundTileJSON) {
+      return renderOnlyOverlay(template);
+    } else {
+      return renderBlended(template);
+    }
   });
 }
 
