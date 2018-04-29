@@ -5,30 +5,38 @@ const program = require('commander');
 const fs = require('fs');
 const path = require('path');
 const sources = require('../lib/sources');
+const styles = require('../lib/styles');
 const index = require('../index');
+const getStdin = require('get-stdin');
 
 program
   .usage('<input file> <output file>')
   .description('Render a GeoJSON thumbnail')
   .option('--background-satellite')
+  .option('--no-padding')
   .option('--background-streets')
   .option('--stylesheet <f>')
+  .option('--access-token <t>')
   .option('--min-zoom <n>')
   .option('--max-zoom <n>')
   .parse(process.argv);
 
-function run(input, output, minZoom, maxZoom, satellite, streets, stylesheetPath) {
-  const geojson = JSON.parse(fs.readFileSync(input));
+function run(inputString, output, minZoom, maxZoom, satellite, streets, stylesheetPath, accessToken, padding) {
+  const geojson = JSON.parse(inputString);
   const options = { };
 
   if (satellite) {
-    options.background = { tilejson: sources.mapboxStellite(process.env.MapboxAccessToken) };
+    options.background = { tilejson: sources.mapboxStellite(accessToken || process.env.MapboxAccessToken) };
   } else if (streets) {
-    options.background = { tilejson: sources.mapboxStreets(process.env.MapboxAccessToken) };
+    options.background = { tilejson: sources.mapboxStreets(accessToken || process.env.MapboxAccessToken) };
   }
 
-  if (stylesheetPath) {
+  if (stylesheetPath === 'black') {
+    options.stylesheet = styles.black;
+  } else if (stylesheetPath) {
     options.stylesheet = fs.readFileSync(path.normalize(stylesheetPath), 'utf8');
+  } else {
+    options.stylesheet = styles.default;
   }
 
   if (output.endsWith('.png')) {
@@ -36,6 +44,8 @@ function run(input, output, minZoom, maxZoom, satellite, streets, stylesheetPath
   } else if (output.endsWith('.jpg')) {
     options.format = 'jpeg';
   }
+
+  options.noPadding = !padding;
 
   if (maxZoom) {
     options.maxzoom = maxZoom;
@@ -61,6 +71,13 @@ function run(input, output, minZoom, maxZoom, satellite, streets, stylesheetPath
 if (program.args.length < 2) {
   program.outputHelp();
 } else {
-  run(program.args[0], program.args[1], parseInt(program.minZoom), parseInt(program.maxZoom), program.backgroundSatellite, program.backgroundStreets, program.stylesheet, program.accessToken);
+
+  if (program.args[0] === '-') {
+    getStdin().then((str) => {
+      run(str, program.args[1], parseInt(program.minZoom), parseInt(program.maxZoom), program.backgroundSatellite, program.backgroundStreets, program.stylesheet, program.accessToken, program.padding);
+    });
+  } else {
+    run(fs.readFileSync(program.args[0]), program.args[1], parseInt(program.minZoom), parseInt(program.maxZoom), program.backgroundSatellite, program.backgroundStreets, program.stylesheet, program.accessToken, program.padding);
+  }
 }
 

@@ -10,7 +10,7 @@ const abaculus = require('@mapbox/abaculus');
 
 function renderOverlay(geojson, options, template, callback) {
   const overlaySource = new thumbnail.ThumbnailSource(geojson, template, options.image, options.map);
-  const renderParams = Object.assign(bestRenderParams(geojson, options.minzoom, options.maxzoom), {
+  const renderParams = Object.assign(bestRenderParams(geojson, options.minzoom, options.maxzoom, !!options.noPadding), {
     format: options.blendFormat || 'png',
     tileSize: options.tileSize,
     getTile: overlaySource.getTile.bind(overlaySource)
@@ -56,6 +56,7 @@ function renderThumbnail(geojson, callback, options) {
   if (typeof callback !== 'function') throw new Error('Callback needs to be a function not an object');
 
   options = Object.assign({
+    noPadding: false,
     minzoom: 0,
     maxzoom: 22,
     stylesheet: styles.default,

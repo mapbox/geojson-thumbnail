@@ -15,12 +15,12 @@
   <Rule>
     <MaxScaleDenominator>50000</MaxScaleDenominator>
     <Filter>([mapnik::geometry_type] = linestring)</Filter>
-    <LineSymbolizer stroke-width="6" stroke-linecap="round" />
+    <LineSymbolizer stroke-width="6" />
   </Rule>
   <Rule>
     <MinScaleDenominator>50000</MinScaleDenominator>
     <Filter>([mapnik::geometry_type] = linestring)</Filter>
-    <LineSymbolizer stroke-width="3" stroke-linecap="round" />
+    <LineSymbolizer stroke-width="3" />
   </Rule>
   <Rule>
     <Filter>([mapnik::geometry_type] = point)</Filter>
