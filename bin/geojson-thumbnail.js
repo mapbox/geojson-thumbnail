@@ -5,34 +5,54 @@ const program = require('commander');
 const fs = require('fs');
 const path = require('path');
 const sources = require('../lib/sources');
+const styles = require('../lib/styles');
 const index = require('../index');
+const getStdin = require('get-stdin');
 
 program
   .usage('<input file> <output file>')
   .description('Render a GeoJSON thumbnail')
+  .option('--background-satellite')
+  .option('--no-padding')
+  .option('--background-streets')
+  .option('--stylesheet <f>')
+  .option('--access-token <t>')
   .option('--min-zoom <n>')
   .option('--max-zoom <n>')
   .parse(process.argv);
 
-const run = (input, output, minZoom, maxZoom) => {
-  const geojson = JSON.parse(fs.readFileSync(input));
-  const options = {
-    backgroundTileJSON: sources.mapboxSatellite(process.env.MapboxAccessToken)
-  };
+function run(inputString, output, minZoom, maxZoom, satellite, streets, stylesheetPath, accessToken, padding) {
+  const geojson = JSON.parse(inputString);
+  const options = { };
+
+  if (satellite) {
+    options.background = { tilejson: sources.mapboxStellite(accessToken || process.env.MapboxAccessToken) };
+  } else if (streets) {
+    options.background = { tilejson: sources.mapboxStreets(accessToken || process.env.MapboxAccessToken) };
+  }
+
+  if (stylesheetPath === 'black') {
+    options.stylesheet = styles.black;
+  } else if (stylesheetPath) {
+    options.stylesheet = fs.readFileSync(path.normalize(stylesheetPath), 'utf8');
+  } else {
+    options.stylesheet = styles.default;
+  }
 
   if (output.endsWith('.png')) {
-    options.blendFormat = 'png';
+    options.format = 'png';
   } else if (output.endsWith('.jpg')) {
-    options.blendFormat = 'jpeg';
+    options.format = 'jpeg';
   }
+
+  options.noPadding = !padding;
 
   if (maxZoom) {
-    options.thumbnailMaxZoom = maxZoom;
+    options.maxzoom = maxZoom;
   }
   if (minZoom) {
-    options.thumbnailMinZoom = minZoom;
+    options.minzoom = minZoom;
   }
-
 
   index.renderThumbnail(geojson, function onImageRendered(err, image, headers, stats) {
     if (err) throw err;
@@ -46,11 +66,18 @@ const run = (input, output, minZoom, maxZoom) => {
       );
     });
   }, options);
-};
+}
 
 if (program.args.length < 2) {
   program.outputHelp();
 } else {
-  run(program.args[0], program.args[1], program.minZoom, program.maxZoom);
+
+  if (program.args[0] === '-') {
+    getStdin().then((str) => {
+      run(str, program.args[1], parseInt(program.minZoom), parseInt(program.maxZoom), program.backgroundSatellite, program.backgroundStreets, program.stylesheet, program.accessToken, program.padding);
+    });
+  } else {
+    run(fs.readFileSync(program.args[0]), program.args[1], parseInt(program.minZoom), parseInt(program.maxZoom), program.backgroundSatellite, program.backgroundStreets, program.stylesheet, program.accessToken, program.padding);
+  }
 }
 

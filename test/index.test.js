@@ -14,7 +14,7 @@ function assertThumbnailRenders(fixturePath, assert, options) {
     assert.true(image.length > 10 * 1024, `preview image should have reasonable image size ${image.length}`);
     assert.end();
   }, Object.assign({
-    backgroundTileJSON: sources.naturalEarth()
+    background: { tilejson: sources.naturalEarth() }
   }, options));
 }
 
@@ -36,20 +36,18 @@ tape('renderThumbnail peak', (assert) => {
 
 tape('renderThumbnail as png with better compression', (assert) => {
   assertThumbnailRenders('/fixtures/peak.geojson', assert, {
-    thumbnailEncoding: 'png8:m=h:z=8',
-    blendFormat: 'png'
+    format: 'png'
   });
 });
 
 tape('renderThumbnail as jpg', (assert) => {
   assertThumbnailRenders('/fixtures/peak.geojson', assert, {
-    thumbnailEncoding: 'jpeg80',
-    blendFormat: 'jpeg'
+    format: 'jpeg'
   });
 });
 
 tape('renderThumbnail with max zoom', (assert) => {
   assertThumbnailRenders('/fixtures/peak.geojson', assert, {
-    thumbnailMaxZoom: 4
+    maxzoom: 4
   });
 });

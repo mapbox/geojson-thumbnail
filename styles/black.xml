@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE Map[]>
+<Map srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over" background-color="#ffffff" font-directory="fonts/">
+
+<Parameters>
+  <Parameter name="bounds">-180,-85.0511,180,85.0511</Parameter>
+  <Parameter name="center">-4.2629,-2.753,16</Parameter>
+  <Parameter name="format">png8:m=h</Parameter>
+  <Parameter name="maxzoom">22</Parameter>
+  <Parameter name="minzoom">0</Parameter>
+  <Parameter name="name"><![CDATA[Black Shape Style]]></Parameter>
+</Parameters>
+
+<Style name="features" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
+    <Filter>([mapnik::geometry_type] = linestring)</Filter>
+    <LineSymbolizer stroke-width="6" />
+  </Rule>
+  <Rule>
+    <MinScaleDenominator>50000</MinScaleDenominator>
+    <Filter>([mapnik::geometry_type] = linestring)</Filter>
+    <LineSymbolizer stroke-width="3" />
+  </Rule>
+  <Rule>
+    <Filter>([mapnik::geometry_type] = point)</Filter>
+    <MarkersSymbolizer width="12" marker-type="ellipse" allow-overlap="true" ignore-placement="true" placement="point" fill="#000000" />
+  </Rule>
+  <Rule>
+    <Filter>([mapnik::geometry_type] = polygon)</Filter>
+    <LineSymbolizer stroke="#000000" />
+    <PolygonSymbolizer fill="#000000" />
+  </Rule>
+</Style>
+<Layer name="features"
+  srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over">
+    <StyleName>features</StyleName>  </Layer>
+</Map>

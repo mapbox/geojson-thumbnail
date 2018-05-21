@@ -4,7 +4,7 @@
   "description": "Generate thumbnails for GeoJSON features",
   "main": "index.js",
   "engines": {
-    "node": "4.3"
+    "node": ">6.0"
   },
   "bin": {
     "geojson-thumbnail": "bin/geojson-thumbnail.js"
@@ -46,6 +46,7 @@
     "@turf/distance": "^5.1.5",
     "@turf/helpers": "^6.0.0-beta.3",
     "commander": "^2.13.0",
+    "get-stdin": "^6.0.0",
     "mapnik": "^3.7.0",
     "xml2js": "^0.4.19"
   },
