@@ -37,7 +37,7 @@
   },
   "homepage": "https://github.com/mapbox/geojson-thumbnail#readme",
   "dependencies": {
-    "@mapbox/abaculus": "https://mapbox-npm.s3.amazonaws.com/package/mapbox-abaculus-v3.0.0-6bbeec157a143b3d49c0b89902abebfa4213c513.tgz",
+    "@mapbox/abaculus": "https://mapbox-npm.s3.amazonaws.com/package/mapbox-abaculus-v3.0.2-c7bd180a9e21e2078fda8ce7fa7a23b140a9167a.tgz",
     "@mapbox/blend": "^2.0.1",
     "@mapbox/sphericalmercator": "^1.1.0",
     "@mapbox/tilejson": "^1.1.0",
