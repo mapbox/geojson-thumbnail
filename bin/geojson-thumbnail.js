@@ -26,7 +26,7 @@ function run(inputString, output, minZoom, maxZoom, satellite, streets, styleshe
   const options = { };
 
   if (satellite) {
-    options.background = { tilejson: sources.mapboxStellite(accessToken || process.env.MapboxAccessToken) };
+    options.background = { tilejson: sources.mapboxSatellite(accessToken || process.env.MapboxAccessToken) };
   } else if (streets) {
     options.background = { tilejson: sources.mapboxStreets(accessToken || process.env.MapboxAccessToken) };
   }
