@@ -2,7 +2,7 @@
 const tape = require('tape');
 const fs = require('fs');
 const path = require('path');
-const bbox = require('@turf/bbox');
+const bbox = require('@turf/bbox').default;
 
 const zoom = require('../lib/zoom');
 
